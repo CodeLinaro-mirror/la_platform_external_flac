@@ -1,7 +1,7 @@
 cc_library_static {
     name: "libFLAC",
     vendor_available: true,
-
+    host_supported: true,
     srcs: [
         "bitmath.c",
         "bitreader.c",
@@ -42,6 +42,7 @@ cc_library_static {
         "-finline-functions",
         "-Werror",
         "-Wno-unused-parameter",
+        "-Wno-unreachable-code-loop-increment",
     ],
 
     arch: {
@@ -58,5 +59,10 @@ cc_library_static {
         blacklist: "libFLAC_blacklist.txt",
     },
 
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
     min_sdk_version: "29",
 }
